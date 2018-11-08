@@ -53,7 +53,7 @@ public class WordSearch{
      */
     public boolean addWordHorizontal(String word,int row, int col){
       char[][] test = copyArray();
-      for (int i = col; i <= test[0].length; i++) {
+      for (int i = col; i < word.length() + col; i++) {
         if (i == test[0].length) {
           return false;
         }
@@ -64,6 +64,7 @@ public class WordSearch{
           return false;
         }
       }
+      data = test;
       return true;
     }
 
@@ -89,5 +90,6 @@ public class WordSearch{
      *and the board is NOT modified.
      */
     public boolean addWordVertical(String word,int row, int col){
+      return true;
     }
 }
