@@ -52,6 +52,29 @@ public class WordSearch{
      * and the board is NOT modified.
      */
     public boolean addWordHorizontal(String word,int row, int col){
+      char[][] test = copyArray();
+      for (int i = col; i <= test[0].length; i++) {
+        if (i == test[0].length) {
+          return false;
+        }
+        if (test[row][i] == '_') {
+          test[row][i] = word.charAt(i - col);
+        }
+        if (!(test[row][i] == word.charAt(i - col))) {
+          return false;
+        }
+      }
+      return true;
+    }
+
+    private char[][] copyArray() {
+      char[][] f = new char[data.length][data[0].length];
+      for (int i = 0; i < data.length; i++) {
+        for (int j = 0; j < data[i].length; j++) {
+          f[i][j] = data[i][j];
+        }
+      }
+      return f;
     }
 
    /**Attempts to add a given word to the specified position of the WordGrid.
