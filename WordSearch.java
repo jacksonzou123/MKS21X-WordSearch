@@ -90,6 +90,19 @@ public class WordSearch{
      *and the board is NOT modified.
      */
     public boolean addWordVertical(String word,int row, int col){
+      char[][] test = copyArray();
+      for (int i = row; i < word.length() + row; i++) {
+        if (i == test.length) {
+          return false;
+        }
+        if (test[i][col] == '_') {
+          test[i][col] = word.charAt(i - row);
+        }
+        if (!(test[i][col] == word.charAt(i - row))) {
+          return false;
+        }
+      }
+      data = test;
       return true;
     }
 }
