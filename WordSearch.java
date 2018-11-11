@@ -16,11 +16,7 @@ public class WordSearch{
     //all words that were successfully added get moved into wordsAdded.
     private ArrayList<String>wordsAdded;
 
-    public WordSearch( int rows, int cols, String fileName) throws FileNotFoundException{
-      data = new char[rows][cols];
-      File file = new File(fileName);
-      Scanner in = new Scanner(file);
-      System.out.println(in);
+    public WordSearch( int rows, int cols, String fileName) {
 
     }
 
