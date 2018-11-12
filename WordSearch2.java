@@ -25,18 +25,18 @@ public class WordSearch2{
      *separated by newlines.
      */
     public String toString(){
-      String f = "";
+      String f = "|";
       for (int i = 0; i < data.length; i++) {
         for (int j = 0; j < data[i].length; j++) {
           if (j == data[i].length - 1) {
-            f += data[i][j] + "\n";
+            f += data[i][j] + "|\n|";
           }
           else {
             f += data[i][j] + " ";
           }
         }
       }
-      return f;
+      return f.substring(0,f.length() -1);
     }
 
 

@@ -16,7 +16,7 @@ public class WordSearch{
     //all words that were successfully added get moved into wordsAdded.
     private ArrayList<String>wordsAdded;
 
-    public WordSearch( int rows, int cols, String fileName) {
+    public WordSearch( int rows, int cols, String fileName) throws FileNotFoundException{
       Scanner in = new Scanner(new File(fileName));
 
       data = new char[rows][cols];
@@ -28,7 +28,7 @@ public class WordSearch{
       randgen = new Random(seed);
     }
 
-    public WordSearch( int rows, int cols, String fileName, int randSeed) {
+    public WordSearch( int rows, int cols, String fileName, int randSeed) throws FileNotFoundException{
       Scanner in = new Scanner(new File(fileName));
 
       data = new char[rows][cols];
@@ -39,11 +39,20 @@ public class WordSearch{
       randgen = new Random(seed);
     }
 
-
-
-
-
-
+    public String toString(){
+      String f = "|";
+      for (int i = 0; i < data.length; i++) {
+        for (int j = 0; j < data[i].length; j++) {
+          if (j == data[i].length - 1) {
+            f += data[i][j] + "|\n|";
+          }
+          else {
+            f += data[i][j] + " ";
+          }
+        }
+      }
+      return f.substring(0,f.length() -1);
+    }
 
     private void clear(){
       for (int i = 0; i < data.length; i++) {
