@@ -17,7 +17,39 @@ public class WordSearch{
     private ArrayList<String>wordsAdded;
 
     public WordSearch( int rows, int cols, String fileName) {
+      Scanner in = new Scanner(new File(fileName));
 
+      data = new char[rows][cols];
+
+      clear();
+
+      Random ran = new Random();
+      seed = ran.nextInt();
+      randgen = new Random(seed);
     }
 
+    public WordSearch( int rows, int cols, String fileName, int randSeed) {
+      Scanner in = new Scanner(new File(fileName));
+
+      data = new char[rows][cols];
+
+      clear();
+
+      seed = randSeed;
+      randgen = new Random(seed);
+    }
+
+
+
+
+
+
+
+    private void clear(){
+      for (int i = 0; i < data.length; i++) {
+        for (int j = 0; j < data[i].length; j++) {
+          data[i][j] = '_';
+        }
+      }
+    }
 }
