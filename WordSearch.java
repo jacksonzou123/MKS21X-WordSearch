@@ -61,4 +61,39 @@ public class WordSearch{
         }
       }
     }
+
+    public boolean addWord(String word, int r, int c, int rowIncrement, int colIncrement) {
+      char[][] test = copyArray();
+      int index = 0;
+      while (index < word.length()) {
+        if (r > -1 && r < test.length && c > -1 && c < test[0].length) {
+          if (test[r][c] == '_') {
+            test[r][c] = word.charAt(index);
+          }
+          if (test[r][c] != word.charAt(index)) {
+            return false;
+          }
+          else {
+            index++;
+            r += rowIncrement;
+            c += colIncrement;
+          }
+        }
+        else {
+          return false;
+        }
+      }
+      data = test;
+      return true;
+    }
+
+    private char[][] copyArray() {
+      char[][] f = new char[data.length][data[0].length];
+      for (int i = 0; i < data.length; i++) {
+        for (int j = 0; j < data[i].length; j++) {
+          f[i][j] = data[i][j];
+        }
+      }
+      return f;
+    }
 }
