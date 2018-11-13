@@ -44,6 +44,7 @@ public class WordSearch{
 
       seed = randSeed;
       randgen = new Random(seed);
+      addAllWords();
     }
 
     public String toString(){
@@ -58,7 +59,9 @@ public class WordSearch{
           }
         }
       }
-      return f.substring(0,f.length() -1);
+      f = f.substring(0,f.length() -1);
+      f += "\n" + seed;
+      return f;
     }
 
     private void clear(){
