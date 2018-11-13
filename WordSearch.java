@@ -29,6 +29,7 @@ public class WordSearch{
       Random ran = new Random();
       seed = ran.nextInt();
       randgen = new Random(seed);
+      addAllWords();
     }
 
     public WordSearch( int rows, int cols, String fileName, int randSeed) throws FileNotFoundException{
@@ -101,5 +102,30 @@ public class WordSearch{
         }
       }
       return f;
+    }
+
+    private void addAllWords() {
+      for (int i = 0; i < 5; i++) {
+        String word = wordsToAdd.get(abs(randgen.nextInt()) % wordsToAdd.size());
+        int h = (abs(randgen.nextInt()) % 3) - 1;
+        int v = (abs(randgen.nextInt()) % 3) - 1;
+        System.out.println(word);
+        int x = 100;
+        while (x > 0) {
+          if (addWord(word, abs(randgen.nextInt()) % data.length, abs(randgen.nextInt()) % data[0].length, h, v)) {
+            x = -1;
+          }
+          x -= 1;
+        }
+        wordsToAdd.remove(word);
+        wordsAdded.add(word);
+      }
+    }
+
+    private static int abs(int input) {
+      if (input < 0) {
+        input*= -1;
+      }
+      return input;
     }
 }
