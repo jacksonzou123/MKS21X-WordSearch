@@ -133,12 +133,13 @@ public class WordSearch{
     }
 
     private void addAllWords() {
-      for (int i = 0; i < 5; i++) {
+      for (int i = 0; i < wordsToAdd.size(); i+= 0) {
         String word = wordsToAdd.get(abs(randgen.nextInt()) % wordsToAdd.size());
         int h = (abs(randgen.nextInt()) % 3) - 1;
         int v = (abs(randgen.nextInt()) % 3) - 1;
         System.out.println(word);
-        int x = 100;
+
+        int x = 1000;
         while (x > 0) {
           if (addWord(word, abs(randgen.nextInt()) % data.length, abs(randgen.nextInt()) % data[0].length, h, v)) {
             x = -1;
@@ -146,6 +147,7 @@ public class WordSearch{
           x -= 1;
         }
         wordsToAdd.remove(word);
+        System.out.println(wordsToAdd);
         wordsAdded.add(word);
       }
     }
