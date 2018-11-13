@@ -137,6 +137,9 @@ public class WordSearch{
         String word = wordsToAdd.get(abs(randgen.nextInt()) % wordsToAdd.size());
         int h = (abs(randgen.nextInt()) % 3) - 1;
         int v = (abs(randgen.nextInt()) % 3) - 1;
+        if (h == 0 && v == 0) {
+          h = 1;
+        }
         System.out.println(word);
 
         int x = 1000;
