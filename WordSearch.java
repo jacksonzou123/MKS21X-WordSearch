@@ -16,6 +16,31 @@ public class WordSearch{
     //all words that were successfully added get moved into wordsAdded.
     private ArrayList<String>wordsAdded = new ArrayList<>();
 
+    public static void main(String[] args) {
+      WordSearch a;
+      if (args.length == 3) {
+        try {
+          a = new WordSearch(Integer.parseInt(args[0]), Integer.parseInt(args[1]), args[2]);
+          System.out.println(a);
+        }
+        catch(FileNotFoundException e) {
+          e.printStackTrace();
+        }
+      }
+      if (args.length == 4) {
+        try {
+          a = new WordSearch(Integer.parseInt(args[0]), Integer.parseInt(args[1]), args[2], Integer.parseInt(args[3]));
+          System.out.println(a);
+        }
+        catch(FileNotFoundException e) {
+          e.printStackTrace();
+        }
+      }
+      if (args.length != 3 && args.length != 4) {
+        System.out.println("invalid args");
+      }
+    }
+
     public WordSearch( int rows, int cols, String fileName) throws FileNotFoundException{
       Scanner in = new Scanner(new File(fileName));
       while (in.hasNextLine()) {
@@ -60,7 +85,7 @@ public class WordSearch{
         }
       }
       f = f.substring(0,f.length() -1);
-      f += "\n" + seed;
+      f += "\nseed: " + seed;
       return f;
     }
 
