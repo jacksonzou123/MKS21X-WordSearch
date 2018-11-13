@@ -11,7 +11,7 @@ public class WordSearch{
     private Random randgen;
 
     //all words from a text file get added to wordsToAdd, indicating that they have not yet been added
-    public ArrayList<String>wordsToAdd = new ArrayList<>();
+    private ArrayList<String>wordsToAdd = new ArrayList<>();
 
     //all words that were successfully added get moved into wordsAdded.
     private ArrayList<String>wordsAdded = new ArrayList<>();
@@ -33,6 +33,9 @@ public class WordSearch{
 
     public WordSearch( int rows, int cols, String fileName, int randSeed) throws FileNotFoundException{
       Scanner in = new Scanner(new File(fileName));
+      while (in.hasNextLine()) {
+        wordsToAdd.add(in.nextLine());
+      }
 
       data = new char[rows][cols];
 
@@ -65,7 +68,7 @@ public class WordSearch{
       }
     }
 
-    public boolean addWord(String word, int r, int c, int rowIncrement, int colIncrement) {
+    private boolean addWord(String word, int r, int c, int rowIncrement, int colIncrement) {
       char[][] test = copyArray();
       int index = 0;
       while (index < word.length()) {
