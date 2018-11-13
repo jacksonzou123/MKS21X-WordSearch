@@ -24,7 +24,7 @@ public class WordSearch{
           System.out.println(a);
         }
         catch(FileNotFoundException e) {
-          e.printStackTrace();
+          System.out.println("FIle not found: Please type a correct filename");
         }
       }
       if (args.length == 4) {
@@ -36,8 +36,8 @@ public class WordSearch{
           e.printStackTrace();
         }
       }
-      if (args.length != 3 && args.length != 4) {
-        System.out.println("invalid args");
+      if (args.length < 3) {
+        System.out.println("Invalid arguments: Please follow this format (java WordSearch rows cols filename)");
       }
     }
 
