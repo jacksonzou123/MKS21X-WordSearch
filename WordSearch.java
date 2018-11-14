@@ -5,7 +5,7 @@ public class WordSearch{
     private char[][]data;
 
     //the random seed used to produce this WordSearch
-    private int seed;
+    private static int seed;
 
     //a random Object to unify your random calls
     private Random randgen;
@@ -17,31 +17,32 @@ public class WordSearch{
     private ArrayList<String>wordsAdded = new ArrayList<>();
 
     public static void main(String[] args) {
-      WordSearch a;
-      if (args.length == 3) {
-        try {
-          a = new WordSearch(Integer.parseInt(args[0]), Integer.parseInt(args[1]), args[2]);
-          System.out.println(a);
+      try {
+        WordSearch a;
+        boolean answer = false;
+        if (args.length >= 5) {
+          if (args[4].equals("key")) {
+            answer = true;
+          }
         }
-        catch(FileNotFoundException e) {
-          System.out.println("FIle not found: Please type a correct filename");
+        if (args.length >= 4) {
+          seed = Integer.parseInt(args[3]);
         }
+        else {
+          Random rng = new Random();
+          seed = rng.nextInt();
+        }
+        if (args.length <= 2) {
+          System.out.println("Not enough arguments: Please follow the following format:\njava WordSearch rows cols filename seed key\n seed and key are optional");
+        }
+        System.out.println(a = new WordSearch(Integer.parseInt(args[0]),Integer.parseInt(args[1]),args[2],seed,answer));
       }
-      if (args.length == 4) {
-        try {
-          a = new WordSearch(Integer.parseInt(args[0]), Integer.parseInt(args[1]), args[2], Integer.parseInt(args[3]));
-          System.out.println(a);
-        }
-        catch(FileNotFoundException e) {
-          e.printStackTrace();
-        }
-      }
-      if (args.length < 3) {
-        System.out.println("Invalid arguments: Please follow this format (java WordSearch rows cols filename)");
+      catch(FileNotFoundException e) {
+        System.out.println("fill in later");
       }
     }
 
-    public WordSearch( int rows, int cols, String fileName) throws FileNotFoundException{
+    public WordSearch( int rows, int cols, String fileName, int randSeed, boolean answer) throws FileNotFoundException{
       Scanner in = new Scanner(new File(fileName));
       while (in.hasNextLine()) {
         wordsToAdd.add(in.nextLine());
@@ -50,27 +51,10 @@ public class WordSearch{
       data = new char[rows][cols];
 
       clear();
-
-      Random ran = new Random();
-      seed = ran.nextInt();
-      randgen = new Random(seed);
+      randgen = new Random(randSeed);
       addAllWords();
     }
 
-    public WordSearch( int rows, int cols, String fileName, int randSeed) throws FileNotFoundException{
-      Scanner in = new Scanner(new File(fileName));
-      while (in.hasNextLine()) {
-        wordsToAdd.add(in.nextLine());
-      }
-
-      data = new char[rows][cols];
-
-      clear();
-
-      seed = randSeed;
-      randgen = new Random(seed);
-      addAllWords();
-    }
 
     public String toString(){
       String f = "|";
@@ -85,7 +69,7 @@ public class WordSearch{
         }
       }
       f = f.substring(0,f.length() -1);
-      f += "\nseed: " + seed;
+      f += "\nseed: " + seed + "\nWords: " + wordsAdded;
       return f;
     }
 
@@ -140,8 +124,6 @@ public class WordSearch{
         if (h == 0 && v == 0) {
           h = 1;
         }
-        System.out.println(word);
-
         int x = 1000;
         while (x > 0) {
           if (addWord(word, abs(randgen.nextInt()) % data.length, abs(randgen.nextInt()) % data[0].length, h, v)) {
@@ -150,7 +132,6 @@ public class WordSearch{
           x -= 1;
         }
         wordsToAdd.remove(word);
-        System.out.println(wordsToAdd);
         wordsAdded.add(word);
       }
     }
