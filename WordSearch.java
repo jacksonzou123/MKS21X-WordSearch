@@ -33,12 +33,18 @@ public class WordSearch{
           seed = rng.nextInt();
         }
         if (args.length <= 2) {
-          System.out.println("Not enough arguments: Please follow the following format:\njava WordSearch rows cols filename seed key\n seed and key are optional");
+          System.out.println("Insufficient number of inputs");
+          error();
         }
         System.out.println(a = new WordSearch(Integer.parseInt(args[0]),Integer.parseInt(args[1]),args[2],seed,answer));
       }
       catch(FileNotFoundException e) {
-        System.out.println("fill in later");
+        System.out.println("File does not exist; File must follow the format filename.txt");
+        error();
+      }
+      catch(NumberFormatException e) {
+        System.out.println("row, col, and seed must all be integer numbers");
+        error();
       }
     }
 
@@ -141,5 +147,10 @@ public class WordSearch{
         input*= -1;
       }
       return input;
+    }
+
+    public static void error() {
+      System.out.println("Please follow the following format:\njava WordSearch rows cols filename seed key\nseed and key are optional");
+      System.exit(1);
     }
 }
