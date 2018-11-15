@@ -67,14 +67,24 @@ public class WordSearch{
       for (int i = 0; i < data.length; i++) {
         for (int j = 0; j < data[i].length; j++) {
           if (j == data[i].length - 1) {
-            f += data[i][j] + "|\n|";
+            if (data[i][j] == '_') {
+              f += ' ' + "|\n|";
+            }
+            else {
+              f += data[i][j] + "|\n|";
+            }
           }
           else {
-            f += data[i][j] + " ";
+            if (data[i][j] == '_') {
+              f += "  ";
+            }
+            else {
+              f += data[i][j] + " ";
+            }
           }
         }
       }
-      f = f.substring(0,f.length() -1);
+      f = f.substring(0, f.length() - 1);
       f += "\nseed: " + seed + "\nWords: " + wordsAdded;
       return f;
     }
@@ -134,11 +144,12 @@ public class WordSearch{
         while (x > 0) {
           if (addWord(word, abs(randgen.nextInt()) % data.length, abs(randgen.nextInt()) % data[0].length, h, v)) {
             x = -1;
+            wordsToAdd.remove(word);
+            wordsAdded.add(word);
           }
           x -= 1;
         }
         wordsToAdd.remove(word);
-        wordsAdded.add(word);
       }
     }
 
