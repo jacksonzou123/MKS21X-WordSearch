@@ -46,6 +46,10 @@ public class WordSearch{
         System.out.println("row, col, and seed must all be integer numbers");
         error();
       }
+      catch(NegativeArraySizeException e) {
+        System.out.println("row and col must be positive integers");
+        error();
+      }
     }
 
     public WordSearch( int rows, int cols, String fileName, int randSeed, boolean answer) throws FileNotFoundException{
