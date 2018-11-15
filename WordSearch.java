@@ -38,11 +38,10 @@ public class WordSearch{
         }
         System.out.println(a = new WordSearch(Integer.parseInt(args[0]),Integer.parseInt(args[1]),args[2],seed,answer));
       }
-      catch(FileNotFoundException e) {
-        System.out.println("File does not exist; File must follow the format filename.txt");
+      catch(Exception e) {
         error();
       }
-      catch(NumberFormatException e) {
+      /*catch(NumberFormatException e) {
         System.out.println("row, col, and seed must all be integer numbers");
         error();
       }
@@ -50,6 +49,7 @@ public class WordSearch{
         System.out.println("row and col must be positive integers");
         error();
       }
+      */
     }
 
     public WordSearch( int rows, int cols, String fileName, int randSeed, boolean answer) throws FileNotFoundException{
@@ -63,6 +63,9 @@ public class WordSearch{
       clear();
       randgen = new Random(randSeed);
       addAllWords();
+      if (!answer) {
+        addRandomLetters();
+      }
     }
 
 
@@ -154,6 +157,16 @@ public class WordSearch{
           x -= 1;
         }
         wordsToAdd.remove(word);
+      }
+    }
+
+    private void addRandomLetters() {
+      for (int i = 0; i < data.length; i++) {
+        for (int j = 0; j < data[0].length; j++) {
+          if (data[i][j] == '_') {
+            data[i][j] = (char)('A' + abs(randgen.nextInt() % 25));
+          }
+        }
       }
     }
 
