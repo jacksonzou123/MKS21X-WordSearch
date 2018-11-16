@@ -93,6 +93,7 @@ public class WordSearch{
       }
       f = f.substring(0, f.length() - 1);
       f += "\nseed: " + seed + "\nWords: " + wordsAdded;
+      System.out.println((int)data[31][11]);
       return f;
     }
 
@@ -163,11 +164,12 @@ public class WordSearch{
     private void addRandomLetters() {
       for (int i = 0; i < data.length; i++) {
         for (int j = 0; j < data[0].length; j++) {
-          if (data[i][j] == '_') {
-            data[i][j] = (char)('A' + abs(randgen.nextInt() % 25));
+          if (data[i][j] == '_' || data[i][j] == ' ') {
+            data[i][j] = (char)('A' + abs(randgen.nextInt()) % 25);
           }
         }
       }
+
     }
 
     private static int abs(int input) {
