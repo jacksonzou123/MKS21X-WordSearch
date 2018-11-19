@@ -93,7 +93,6 @@ public class WordSearch{
       }
       f = f.substring(0, f.length() - 1);
       f += "\nseed: " + seed + "\nWords: " + wordsAdded;
-      System.out.println((int)data[31][11]);
       return f;
     }
 
